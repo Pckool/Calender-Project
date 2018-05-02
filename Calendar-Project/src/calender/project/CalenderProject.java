@@ -22,6 +22,45 @@ public class CalenderProject {
             String var = in.next();
             var = var.toLowerCase();
             if(var.equals("yes")){
+                String name;
+                String description;
+                int year;
+                int month;
+                int day;
+                
+                print("Event Name: ");
+                name = in.nextLine();
+                
+                print("Event Description: ");
+                description = in.nextLine();
+                
+                print("Is the event today?: ");
+                String isToday = in.nextLine();
+                
+                if(isToday.toLowerCase().equals("yes")){
+                    
+                }
+                else{
+                    boolean setDate = true;
+                    while(setDate){
+                        setDate = false;
+                        try{
+                            print("Event Year: ");
+                            year = in.nextInt();
+                            print("Event Month: ");
+                            month = in.nextInt();
+                            print("Event Day: ");
+                            day = in.nextInt();
+                            // Changes the date to the specified amount
+                            main_calendar.changeDate(year, month, day);
+                        }catch(InputMismatchException e){
+                            println("You need to give an integer to represent "
+                                    + "any of the date values.");
+                            setDate = true;
+                        }
+                    }   
+                }
+                main_calendar.setEvent(name, description);
                 
             }
             else if(var.equals("no")){
