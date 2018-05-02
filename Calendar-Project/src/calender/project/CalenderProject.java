@@ -16,10 +16,10 @@ public class CalenderProject {
         ECalendar main_calendar = new ECalendar();
         boolean loop = true;
         while(loop){
-            main_calendar.printCalendar();
+            main_calendar.displayCalendar();
             println("Would you like to add an event?");
             print("Yes/No: ");
-            String var = in.next();
+            String var = in.nextLine();
             var = var.toLowerCase();
             if(var.equals("yes")){
                 String name;

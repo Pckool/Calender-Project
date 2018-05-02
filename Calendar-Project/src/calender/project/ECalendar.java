@@ -19,7 +19,7 @@ public class ECalendar {
     }
     
 // EVENT METHODS
-    public String getEvent(){
+    public String getEvent(Calendar day){
         String event = "";
         
         return event;
@@ -75,44 +75,51 @@ public class ECalendar {
         }
     }
     
-    public void printCalendar(){
-        int month = CALENDAR.get(Calendar.MONTH);
-        int year = CALENDAR.get(Calendar.YEAR);
+    public static void displayCalendar() {
+        int Y = CALENDAR.get(Calendar.YEAR);    // year
+        int startDayOfMonth = CALENDAR.get(Calendar.DAY_OF_MONTH);
+        int spaces = startDayOfMonth;
+
         // months[i] = name of month i
         String[] months = {
-            "January", "February", "March",
-            "April", "May", "June",
-            "July", "August", "September",
-            "October", "November", "December"
-        };
+                "January", "February", "March",
+                "April", "May", "June",
+                "July", "August", "September",
+                "October", "November", "December"
+            };
 
-        // days[i] = number of days in month i
-        int[] days = {
-            31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
-        };
+            // days[i] = number of days in month i
+            int[] days = {
+                31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+            };
 
-        // check for leap year
-        if (month == 2 && isLeapYear(year)) 
-            days[month] = 29;
+            for (int i = 0; i < 12; i++) {
+
+            // check for leap year
+            if  ((((Y % 4 == 0) && (Y % 100 != 0)) ||  (Y % 400 == 0)) && i == 2)
+                days[i] = 29;
 
 
-        // print calendar header
-        System.out.println("   " + months[month] + " " + year);
-        System.out.println(" S  M Tu  W Th  F  S");
+            // print calendar header
+            // Display the month and year
+            System.out.println("          "+ months[i] + " " + Y);
 
-        // starting day
-        int d = day(month, 1, year);
+            // Display the lines
+            System.out.println("_____________________________________");
+            System.out.println("   Sun  Mon Tue   Wed Thu   Fri  Sat");
 
-        // print the calendar
-        for (int i = 0; i < d; i++)
-            System.out.print("   ");
-        for (int i = 1; i <= days[month]; i++) {
-            System.out.printf("%2d ", i);
-            if (((i + d) % 7 == 0) || (i == days[month])) System.out.println();
+            // spaces required
+               spaces = (days[i] + spaces)%7;
+
+            // print the calendar
+            for (int ii = 0; ii < spaces; ii++)
+                System.out.print("     ");
+            for (int ii = 1; ii <= days[i]; ii++) {
+                System.out.printf(" %3d ", ii);
+                if (((ii + spaces) % 7 == 0) || (ii == days[i])) System.out.println();
+            }
+
+            System.out.println();
         }
-        
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
-//        System.out.println(sdf.format(CALENDAR.getTime()));
-
-    } 
+    }      
 }
