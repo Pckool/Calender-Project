@@ -5,10 +5,12 @@ import java.text.SimpleDateFormat;
 /**
  *
  * @author phill
+ * @description This is basically a wrapper class for the more complicated Calendar class given with java.util
  */
 public class ECalendar {
 // GLOBAL VARIABLES
     private static Calendar CALENDAR;
+    private static EventHandler[] EHDLR = new EventHandler[12];
     
 // CONSTRUCTORS
     ECalendar(){
@@ -19,19 +21,22 @@ public class ECalendar {
     }
     
 // EVENT METHODS
-    public String getEvent(Calendar day){
-        String event = "";
+    public String getEvents(Calendar cal){
+        EHDLR[cal.get(Calendar.MONTH)].getEvents();
         
-        return event;
+        return "";
     }
-    public void setEvent(String name, String description){
-        Event e = new Event(name, description, CALENDAR);
+    public void setEvent(String name, String description, Calendar cal){
+        EHDLR[cal.get(Calendar.MONTH)].addEvent(name, description, cal);
         
         String event = "";
         
     }
     
 // CALENDAR METHODS
+    public Calendar getCalendar(){
+        return CALENDAR;
+    }
     
     // return true if the given year is a leap year
     public boolean isLeapYear(int year) {

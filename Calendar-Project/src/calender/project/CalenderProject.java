@@ -60,7 +60,7 @@ public class CalenderProject {
                         }
                     }   
                 }
-                main_calendar.setEvent(name, description);
+                main_calendar.setEvent(name, description, main_calendar.getCalendar());
                 
             }
             else if(var.equals("no")){
