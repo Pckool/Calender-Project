@@ -34,17 +34,18 @@ public class EventHandler {
      * 
      */
     public String getEvents(){
+        System.out.println("EHANDLER");
         String events = "";
         if(EVENT_LIST.size() > 0){
             for(int x = 0; x < EVENT_LIST.size(); x++){
-                events += "=================================================";
+                events = events + "=================================================";
                 events += EVENT_LIST.get(x).DisplayEvent() + "\n"; 
             }
         }
         else{
             events = "There are no events on this day.";
         }
-        
+        System.out.println(events);
         return events;
     }
     
