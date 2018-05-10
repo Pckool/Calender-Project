@@ -44,7 +44,6 @@ public class EventHandler {
      * 
      */
     public String getEvents(){
-        System.out.println("EHANDLER");
         String events = "";
         if(EVENT_LIST.isEmpty()){
             events = "There are no events on this day.";

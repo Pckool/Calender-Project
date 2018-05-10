@@ -10,7 +10,7 @@ This a a project for mt Data Structures class. Using Java, I have created a plan
 3. Follow the prompts when they appear
 
 #### Known Errors
-- Has issues grabbing the Events from the EventHandler (Displaying events will not work)
+- ~~Has issues grabbing the Events from the EventHandler (Displaying events will not work)~~
 - ~~When creating a new event, the event name is not registered by the scanner~~
 
 ##### Built wilth NetBeans and with Love :)

@@ -5,7 +5,7 @@ import java.util.*;
  * @author phill
  * @description This is basically a container for a EventHandler
  */
-public class Day extends LinkedList{
+public class Day extends LinkedList implements DayInterface{
     // GLOBAL VARIABLES
     private EventHandler EHANDLER;
     
@@ -24,13 +24,11 @@ public class Day extends LinkedList{
         this.EHANDLER = new EventHandler(MonthOBJ, this);
     }
     
-    /**
-     * 
-     * @param Event an Event object
-     */
+    @Override
     public void addEvent(Event e){
         this.EHANDLER.addEvent(e);
     }
+    @Override
     public void replaceEvent(Event e, int i){
         removeEvent(i);
         addEvent(e);
@@ -39,9 +37,7 @@ public class Day extends LinkedList{
         
     }
     
-    /**
-     * @return EventHandler
-    */
+    @Override
     public EventHandler getEventHandler(){
         return EHANDLER;
     }

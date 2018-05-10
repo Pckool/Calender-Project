@@ -35,12 +35,6 @@ public class Event implements EventInterface{
         AM_PM = CALENDAR.get(Calendar.AM_PM);
         DESCRIPTION = description;
         NAME = name;
-        System.out.println(EVENTCOUNT);
-        System.out.println(YEAR);
-        System.out.println(MONTH);
-        System.out.println(DAY);
-        System.out.println(NAME);
-        System.out.println(DESCRIPTION);
         
     }
     Event(String name, String description, Calendar c, Month mon, Day day, EventHandler eh){
@@ -54,12 +48,6 @@ public class Event implements EventInterface{
         AM_PM = CALENDAR.get(Calendar.AM_PM);
         DESCRIPTION = description;
         NAME = name;
-        System.out.println(EVENTCOUNT);
-        System.out.println(YEAR);
-        System.out.println(MONTH);
-        System.out.println(DAY);
-        System.out.println(NAME);
-        System.out.println(DESCRIPTION);
         MonthOBJ = mon;
         DayOBJ = day;
         EHOBJ = eh;

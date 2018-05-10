@@ -35,7 +35,7 @@ public class CalenderProject {
                     in.nextLine();
                     name = in.nextLine();
                     print("Event Description: ");
-                    description = in.next();
+                    description = in.nextLine();
                     in.nextLine();
                     println("Is the event today?: ");
                     println("1: Yes");
@@ -100,14 +100,6 @@ public class CalenderProject {
                             continue;
                         }
                     }
-                    break;
-                case 4:
-                    
-                    
-                    print("Press enter to continue...");
-                    in.nextLine();
-                    in.nextLine();
-                    println("");
                     break;
                 case 0:
                     loop = false;
