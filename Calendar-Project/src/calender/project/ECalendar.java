@@ -6,6 +6,12 @@ import java.text.SimpleDateFormat;
  *
  * @author phill
  * @description This is basically a wrapper class for the more complicated Calendar class given with java.util
+ * It's use is not intuative. First you must instantiate a new ECalendar (this).
+ * Then in order to pass in the calendar it creates, you must use the getCalendar 
+ * method and pass that in. I know... Weird but it works quite well.
+ * This class is like a smokescreen for the more complicated Calendar class.
+ * 
+ * @see README in root directory
  */
 public class ECalendar implements ECalendarInterface{
 // GLOBAL VARIABLES
@@ -38,19 +44,19 @@ public class ECalendar implements ECalendarInterface{
     
 // EVENT METHODS
     /**
-     * @param Calendar
+     * @param Calendar a Clanedar object
      * @return String: a formatted string with every event for the given day of the calendar
     */
     public String getEvents(Calendar cal){
         // This long line returns a string of all the events on the day of the given calendar
-        MONTHS.get(cal.get(Calendar.MONTH)).getDay(cal.get(Calendar.DATE)).getEventHandler().getEvents();
-        return "";
+        return MONTHS.get(cal.get(Calendar.MONTH)).getDay(cal.get(Calendar.DATE)).getEventHandler().getEvents();
+        
     }
     /**
      * 
      * @param name
-     * @param description
-     * @param calendar 
+     * @param description a String of the description of your event
+     * @param calendar a Clanedar object
      */
     public void setEvent(String name, String description, Calendar cal){
         MONTHS.get(cal.get(Calendar.MONTH)).getDay(cal.get(Calendar.DATE)).getEventHandler().addEvent(name, description, cal);

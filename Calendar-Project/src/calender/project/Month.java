@@ -17,7 +17,7 @@ public class Month {
     
     /**
      * 
-     * @param date
+     * @param date An integer of the date (1-31 please)
      * @return 
      */
     public Day getDay(int x){

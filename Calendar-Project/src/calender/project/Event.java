@@ -32,7 +32,7 @@ public class Event implements EventInterface{
     
     @Override
     /**
-    * @param String
+    * @param name A String of the name of your Event
     * @return None
     */
     public void setName(String name){
@@ -41,7 +41,7 @@ public class Event implements EventInterface{
     
     @Override
     /**
-    * @param String
+    * @param String a String of the description of your event
     * @return None
     */
     public void setDescription(String desc){
@@ -50,7 +50,7 @@ public class Event implements EventInterface{
     
     @Override
     /**
-    * @param Calendar
+    * @param Calendar a Calendar Object
     * @return None
     */
     public void setCalendar(Calendar cal){

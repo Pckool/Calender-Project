@@ -20,7 +20,7 @@ public class Day extends LinkedList{
     
     /**
      * 
-     * @param e 
+     * @param Event an Event object
      */
     public void addEvent(Event e){
         this.EHANDLER.addEvent(e);
@@ -34,7 +34,6 @@ public class Day extends LinkedList{
     }
     
     /**
-     * @param None
      * @return EventHandler
     */
     public EventHandler getEventHandler(){
