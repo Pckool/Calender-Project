@@ -94,6 +94,7 @@ public class ECalendar implements ECalendarInterface{
         CALENDAR.set(Calendar.YEAR, year);
         CALENDAR.set(Calendar.MONTH, month);
         CALENDAR.set(Calendar.DATE, day);
+
     }
     @Override
     public void changeDate(int month, int day){

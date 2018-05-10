@@ -28,9 +28,9 @@ public class CalenderProject {
                 case 1:
                     String name;
                     String description;
-                    int year;
-                    int month;
-                    int day;
+                    int year = main_calendar.getCalendar().get(Calendar.YEAR);
+                    int month = main_calendar.getCalendar().get(Calendar.MONTH);
+                    int day = main_calendar.getCalendar().get(Calendar.DATE);
                     print("Event Name: ");
                     in.nextLine();
                     name = in.nextLine();
@@ -65,7 +65,7 @@ public class CalenderProject {
                                 continue;
                             }
                         }
-                    }   main_calendar.setEvent(name, description, main_calendar.getCalendar());
+                    }   main_calendar.setEvent(name, description, new GregorianCalendar(year, month, day));
                     break;
                 case 2:
                     // OUTPUT TODAY'S EVENTS
@@ -88,7 +88,7 @@ public class CalenderProject {
                             print("Event Year: ");
                             year = in.nextInt();
                             print("Event Month: ");
-                            month = in.nextInt();
+                            month = in.nextInt() - 1;
                             print("Event Day: ");
                             day = in.nextInt();
                             // Changes the date to the specified amount
