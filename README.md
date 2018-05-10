@@ -1,4 +1,4 @@
-<> MD File (Used by github) View the reposatory here for the formatted README: https://github.com/Pckool/Calender-Project
+<!-- MD File (Used by github) View the reposatory here for the formatted README: https://github.com/Pckool/Calender-Project -->
 # Calender-Project 
 ### By Philippe Clesca
 #### How to use...
