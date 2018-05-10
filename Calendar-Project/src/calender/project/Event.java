@@ -17,6 +17,9 @@ public class Event implements EventInterface{
     private String NAME;
     private String DESCRIPTION;
     
+    public Month MonthOBJ;
+    public Day DayOBJ;
+    public EventHandler EHOBJ;
     private static int EVENTCOUNT;
     
     private int NUMBER;
@@ -38,6 +41,28 @@ public class Event implements EventInterface{
         System.out.println(DAY);
         System.out.println(NAME);
         System.out.println(DESCRIPTION);
+        
+    }
+    Event(String name, String description, Calendar c, Month mon, Day day, EventHandler eh){
+        EVENTCOUNT++;
+        CALENDAR = c;
+        YEAR = CALENDAR.get(Calendar.YEAR);
+        MONTH = CALENDAR.get(Calendar.MONTH);
+        DAY = CALENDAR.get(Calendar.DATE);
+        HOUR = CALENDAR.get(Calendar.HOUR);
+        MINUTE = CALENDAR.get(Calendar.MINUTE);
+        AM_PM = CALENDAR.get(Calendar.AM_PM);
+        DESCRIPTION = description;
+        NAME = name;
+        System.out.println(EVENTCOUNT);
+        System.out.println(YEAR);
+        System.out.println(MONTH);
+        System.out.println(DAY);
+        System.out.println(NAME);
+        System.out.println(DESCRIPTION);
+        MonthOBJ = mon;
+        DayOBJ = day;
+        EHOBJ = eh;
     }
     
     @Override

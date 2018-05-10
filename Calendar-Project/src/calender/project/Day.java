@@ -9,13 +9,19 @@ public class Day extends LinkedList{
     // GLOBAL VARIABLES
     private EventHandler EHANDLER;
     
+    public Month MonthOBJ;
+    
     // CONSTRUCTOR
     /**
      * @param EventHandler
      * @return None
     */
-    Day(EventHandler ehandle){
-        this.EHANDLER = ehandle;
+    Day(){
+        this.EHANDLER = new EventHandler();
+    }
+    Day(Month mon){
+        MonthOBJ = mon;
+        this.EHANDLER = new EventHandler(MonthOBJ, this);
     }
     
     /**

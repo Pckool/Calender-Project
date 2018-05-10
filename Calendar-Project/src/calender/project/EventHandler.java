@@ -8,9 +8,18 @@ import java.util.*;
  * @author phill
  */
 public class EventHandler {
+    public Month MonthOBJ;
+    public Day DayOBJ;
+    
     protected static List<Event> EVENT_LIST;
     EventHandler(){
         EVENT_LIST = new LinkedList<>();
+        
+    }
+    EventHandler(Month mon, Day day){
+        EVENT_LIST = new LinkedList<>();
+        MonthOBJ = mon;
+        DayOBJ = day;
     }
     /**
      * 
@@ -19,7 +28,8 @@ public class EventHandler {
      * @param calendar a Clanedar object
      */
     public void addEvent(String name, String description, Calendar cal){
-        EventInterface evnt = new Event(name, description, cal);
+        EventInterface evnt = new Event(name, description, cal, MonthOBJ, DayOBJ, this);
+        EVENT_LIST.add((Event)evnt);
         
     }
     /**
@@ -36,16 +46,17 @@ public class EventHandler {
     public String getEvents(){
         System.out.println("EHANDLER");
         String events = "";
-        if(EVENT_LIST.size() > 0){
-            for(int x = 0; x < EVENT_LIST.size(); x++){
-                events = events + "=================================================";
-                events += EVENT_LIST.get(x).DisplayEvent() + "\n"; 
-            }
-        }
-        else{
+        if(EVENT_LIST.isEmpty()){
             events = "There are no events on this day.";
         }
-        System.out.println(events);
+        else{
+            for(int x = 0; x < EVENT_LIST.size(); x++){
+                events = events + "=================================================\n";
+                events += EVENT_LIST.get(x).DisplayEvent() + "\n"; 
+            }
+            
+        }
+        System.out.println(EVENT_LIST.size());
         return events;
     }
     

@@ -71,8 +71,12 @@ public class CalenderProject {
                     // OUTPUT TODAY'S EVENTS
                     println(main_calendar.getEvents(main_calendar.getCalendar()));
                     print("Press enter to continue...");
-                    in.nextLine();
-                    in.nextLine();
+                    try{
+                        System.in.read();
+                    }catch(Exception e){
+                        
+                    }
+                    
                     println("");
                     break;
                 case 3:

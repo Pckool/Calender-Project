@@ -14,7 +14,7 @@ public class Month implements MonthInterface{
         DAYS = new ArrayList<>();
         MONTH_VAL = monthVal;
         for(int x = 0; x<days; x++){
-            DAYS.add(new Day(new EventHandler()));
+            DAYS.add(new Day(this));
         }
     }
     
