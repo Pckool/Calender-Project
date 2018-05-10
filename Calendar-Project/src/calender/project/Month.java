@@ -6,7 +6,7 @@ import java.util.*;
  * @author phill
  * @description This is basically a container for 'days'
  */
-public class Month {
+public class Month implements MonthInterface{
     protected List<Day> DAYS;
     public int MONTH_VAL;
     
@@ -18,11 +18,7 @@ public class Month {
         }
     }
     
-    /**
-     * 
-     * @param date An integer of the date (1-31 please)
-     * @return 
-     */
+    @Override
     public Day getDay(int x){
         System.out.println(MONTH_VAL);
         return DAYS.get(x);
