@@ -7,38 +7,70 @@ import java.text.SimpleDateFormat;
  * @author phill
  * @description This is basically a wrapper class for the more complicated Calendar class given with java.util
  */
-public class ECalendar {
+public class ECalendar implements ECalendarInterface{
 // GLOBAL VARIABLES
     private static Calendar CALENDAR;
-    private static EventHandler[] EHDLR = new EventHandler[12];
+    private static List<Month> MONTHS = new ArrayList<>();
+    // months[i] = name of month i
+    protected String[] months = {
+        "January", "February", "March",
+        "April", "May", "June",
+        "July", "August", "September",
+        "October", "November", "December"
+    };
+
+    // days[i] = number of days in month i
+    protected int[] days = {
+        31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+    };
     
 // CONSTRUCTORS
     ECalendar(){
-        CALENDAR = new GregorianCalendar();
-    }
-    ECalendar(Date date){
-        CALENDAR = new GregorianCalendar();
+        this.CALENDAR = new GregorianCalendar();
+        int year = this.CALENDAR.get(Calendar.YEAR);
+        for (int x = 0; x < 12; x++) {
+            // check for leap year
+            if  (isLeapYear(year))
+                days[x] = 29;
+            MONTHS.add(new Month(days[x]));
+        }
     }
     
 // EVENT METHODS
+    /**
+     * @param Calendar
+     * @return String: a formatted string with every event for the given day of the calendar
+    */
     public String getEvents(Calendar cal){
-        EHDLR[cal.get(Calendar.MONTH)].getEvents();
-        
+        // This long line returns a string of all the events on the day of the given calendar
+        MONTHS.get(cal.get(Calendar.MONTH)).getDay(cal.get(Calendar.DATE)).getEventHandler().getEvents();
         return "";
     }
+    /**
+     * 
+     * @param name
+     * @param description
+     * @param calendar 
+     */
     public void setEvent(String name, String description, Calendar cal){
-        EHDLR[cal.get(Calendar.MONTH)].addEvent(name, description, cal);
-        
-        String event = "";
-        
+        MONTHS.get(cal.get(Calendar.MONTH)).getDay(cal.get(Calendar.DATE)).getEventHandler().addEvent(name, description, cal);
     }
     
 // CALENDAR METHODS
+    /**
+     * 
+     * @return Calendar
+     */
     public Calendar getCalendar(){
-        return CALENDAR;
+        return this.CALENDAR;
     }
     
     // return true if the given year is a leap year
+    /**
+     * 
+     * @param year
+     * @return 
+     */
     public boolean isLeapYear(int year) {
         if  ((year % 4 == 0) && (year % 100 != 0)) 
             return true;
@@ -46,14 +78,25 @@ public class ECalendar {
             return true;
         return false;
     }
+    /**
+     * 
+     * @return 
+     */
     public boolean isLeapYear() {
-        if  ((CALENDAR.getWeekYear() % 4 == 0) && (CALENDAR.getWeekYear() % 100 != 0)) 
+        if  ((this.CALENDAR.getWeekYear() % 4 == 0) && (this.CALENDAR.getWeekYear() % 100 != 0)) 
             return true;
-        if  (CALENDAR.getWeekYear() % 400 == 0) 
+        if  (this.CALENDAR.getWeekYear() % 400 == 0) 
             return true;
         return false;
     }
     
+    /**
+     * 
+     * @param month
+     * @param day
+     * @param year
+     * @return 
+     */
     public int day(int month, int day, int year) {
         int y = year - (14 - month) / 12;
         int x = y + y/4 - y/100 + y/400;
@@ -62,46 +105,50 @@ public class ECalendar {
         return d;
     }
     
+    /**
+     * 
+     * @param year
+     * @param month
+     * @param day 
+     */
     public void changeDate(int year, int month, int day){
-        CALENDAR.set(Calendar.YEAR, year);
-        CALENDAR.set(Calendar.MONTH, month);
-        CALENDAR.set(Calendar.DATE, day);
+        this.CALENDAR.set(Calendar.YEAR, year);
+        this.CALENDAR.set(Calendar.MONTH, month);
+        this.CALENDAR.set(Calendar.DATE, day);
     }
+    /**
+     * 
+     * @param month
+     * @param day 
+     */
     public void changeDate(int month, int day){
         if (day > 0 && day <= 31){
-            CALENDAR.set(Calendar.MONTH, month);
-            CALENDAR.set(Calendar.DATE, day);
+            this.CALENDAR.set(Calendar.MONTH, month);
+            this.CALENDAR.set(Calendar.DATE, day);
         }
         
     }
+    /**
+     * 
+     * @param day 
+     */
     public void changeDate(int day){
         if (day > 0 && day <= 31){
-            CALENDAR.set(Calendar.DATE, day);
+            this.CALENDAR.set(Calendar.DATE, day);
         }
     }
     
-    public static void displayCalendar() {
-        int Y = CALENDAR.get(Calendar.YEAR);    // year
-        int startDayOfMonth = CALENDAR.get(Calendar.DAY_OF_MONTH);
+    /**
+     * 
+     */
+    public void displayCalendar() {
+        int Y = this.CALENDAR.get(Calendar.YEAR);    // year
+        int startDayOfMonth = this.CALENDAR.get(Calendar.DAY_OF_MONTH);
         int spaces = startDayOfMonth;
-
-        // months[i] = name of month i
-        String[] months = {
-                "January", "February", "March",
-                "April", "May", "June",
-                "July", "August", "September",
-                "October", "November", "December"
-            };
-
-            // days[i] = number of days in month i
-            int[] days = {
-                31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
-            };
-
-            for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 12; i++) {
 
             // check for leap year
-            if  ((((Y % 4 == 0) && (Y % 100 != 0)) ||  (Y % 400 == 0)) && i == 2)
+            if  (isLeapYear(Y))
                 days[i] = 29;
 
 
@@ -121,7 +168,8 @@ public class ECalendar {
                 System.out.print("     ");
             for (int ii = 1; ii <= days[i]; ii++) {
                 System.out.printf(" %3d ", ii);
-                if (((ii + spaces) % 7 == 0) || (ii == days[i])) System.out.println();
+                if (((ii + spaces) % 7 == 0) || (ii == days[i])) 
+                    System.out.println();
             }
 
             System.out.println();

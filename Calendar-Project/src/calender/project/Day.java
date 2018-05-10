@@ -1,28 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package calender.project;
 import java.util.*;
 /**
  *
  * @author phill
+ * @description This is basically a container for a EventHandler
  */
 public class Day extends LinkedList{
     // GLOBAL VARIABLES
-    protected static List EVENT_LIST = new LinkedList();
+    private EventHandler EHANDLER;
     
-    Day(){
-        
+    // CONSTRUCTOR
+    /**
+     * @param EventHandler
+     * @return None
+    */
+    Day(EventHandler ehandle){
+        this.EHANDLER = ehandle;
     }
+    
+    /**
+     * 
+     * @param e 
+     */
     public void addEvent(Event e){
-        EVENT_LIST.add(e);
+        this.EHANDLER.addEvent(e);
     }
     public void replaceEvent(Event e, int i){
-        EVENT_LIST.get(i);
+        removeEvent(i);
+        addEvent(e);
     }
-    public void removeEvent(Event e){
+    public void removeEvent(int i){
         
+    }
+    
+    /**
+     * @param None
+     * @return EventHandler
+    */
+    public EventHandler getEventHandler(){
+        return EHANDLER;
     }
 }

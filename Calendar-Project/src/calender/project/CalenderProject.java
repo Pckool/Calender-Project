@@ -13,15 +13,16 @@ public class CalenderProject {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         // Creates a new Calendar
-        ECalendar main_calendar = new ECalendar();
+        ECalendarInterface main_calendar = new ECalendar();
         boolean loop = true;
         while(loop){
             main_calendar.displayCalendar();
-            println("Would you like to add an event?");
-            print("Yes/No: ");
-            String var = in.nextLine();
-            var = var.toLowerCase();
-            if(var.equals("yes")){
+            println("1: Add an event?");
+            println("2: View Today's Events");
+            println("3: Change the Date");
+            println("0: Exit");
+            int var = in.nextInt();
+            if(var == 1){
                 String name;
                 String description;
                 int year;
@@ -34,10 +35,12 @@ public class CalenderProject {
                 print("Event Description: ");
                 description = in.nextLine();
                 
-                print("Is the event today?: ");
-                String isToday = in.nextLine();
+                println("Is the event today?: ");
+                println("1: Yes");
+                println("0: No");
+                int isToday = in.nextInt();
                 
-                if(isToday.toLowerCase().equals("yes")){
+                if(isToday == 1){
                     
                 }
                 else{
@@ -63,7 +66,7 @@ public class CalenderProject {
                 main_calendar.setEvent(name, description, main_calendar.getCalendar());
                 
             }
-            else if(var.equals("no")){
+            else if(var == 0){
                 loop = false;
             }
             else{

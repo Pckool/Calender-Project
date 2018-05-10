@@ -1,4 +1,3 @@
-
 package calender.project;
 import java.time.*;
 import java.util.*;
@@ -17,7 +16,8 @@ public class Event implements EventInterface{
     public int AM_PM;
     public String NAME;
     public String DESCRIPTION;
-
+    
+    private int NUMBER;
     Event(String name, String description, Calendar c){
         CALENDAR = c;
         YEAR = CALENDAR.get(Calendar.YEAR);
@@ -58,6 +58,7 @@ public class Event implements EventInterface{
         YEAR = CALENDAR.get(Calendar.YEAR);
         MONTH = CALENDAR.get(Calendar.MONTH);
         DAY = CALENDAR.get(Calendar.DATE);
+        
     }
     /**
     * @param None
